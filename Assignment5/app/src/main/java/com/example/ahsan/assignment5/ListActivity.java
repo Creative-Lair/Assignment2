@@ -55,8 +55,9 @@ public class ListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         String string = readFromFile();
-        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
-       // listView.setAdapter(adapter);
+        //Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+        adapter = new ListAdapter(this,au_locations,city);
+       listView.setAdapter(adapter);
     }
 
     private String readFromFile() {
