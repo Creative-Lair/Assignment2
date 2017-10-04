@@ -9,6 +9,12 @@ public class Cities {
     private String lat;
     private String lon;
 
+    public Cities(String name,String lat,String lon)
+    {
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+    }
     public String getName() {
         return name;
     }
