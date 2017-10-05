@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,11 +29,13 @@ public class ListActivity extends AppCompatActivity {
     private ListView listView;
     private ListAdapter adapter;
     List<Cities> city;
+    Button adder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         listView = (ListView) findViewById(R.id.listview);
+        adder = (Button) findViewById(R.id.addbutton);
         String FILENAME = "au_locations.csv";
         Preference pref = new Preference(ListActivity.this);
         if(pref.getFirst() == "first") {
@@ -70,6 +73,14 @@ public class ListActivity extends AppCompatActivity {
                 pre.updateLon(city.get(position).getLon());
                 pre.updateTZ(city.get(position).getTZ());
                 Intent myIntent = new Intent(ListActivity.this, MainActivity.class);
+                ListActivity.this.startActivity(myIntent);
+            }
+        });
+
+        adder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(ListActivity.this, UpdateAcitvity.class);
                 ListActivity.this.startActivity(myIntent);
             }
         });
