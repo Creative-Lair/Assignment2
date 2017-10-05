@@ -1,5 +1,6 @@
 package com.example.ahsan.assignment5;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent myIntent = new Intent(MainActivity.this, ListActivity.class);
+                //myIntent.putExtra("key", value); //Optional parameters
+                MainActivity.this.startActivity(myIntent);
             }
         });
     }

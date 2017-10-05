@@ -8,7 +8,15 @@ public class Cities {
     private String name;
     private String lat;
     private String lon;
+    private String TZ;
 
+    public Cities(String name,String lat,String lon,String TZ)
+    {
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+        this.TZ = TZ;
+    }
     public String getName() {
         return name;
     }
@@ -31,5 +39,13 @@ public class Cities {
 
     public void setLon(String lon) {
         this.lon = lon;
+    }
+
+    public String getTZ() {
+        return TZ;
+    }
+
+    public void setTZ(String TZ) {
+        this.TZ = TZ;
     }
 }
