@@ -3,7 +3,7 @@
     <string name="app_name">Suntime</string>
     <string name="title_activity_update_acitvity">UpdateAcitvity</string>
     <string name="city">City:</string>
-    <string name="city_name">city name</string>
+    <string name="city_name">City</string>
     <string name="latitude">Latitude:</string>
     <string name="longitude">Longitude:</string>
     <string name="timezone">TimeZone:</string>
