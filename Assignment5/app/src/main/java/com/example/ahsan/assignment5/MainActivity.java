@@ -18,7 +18,7 @@ import java.util.TimeZone;
 public class MainActivity extends AppCompatActivity {
 
     /** Called when the activity is first created. */
-    private Button add,list,googlemap,currlocation;
+    private Button add,list;
     private TextView cityname;
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         add = (Button) findViewById(R.id.addstate);
         list =(Button) findViewById(R.id.liststate);
-        googlemap = (Button) findViewById(R.id.googlemap);
-        currlocation = (Button) findViewById(R.id.currlocation);
         cityname = (TextView) findViewById(R.id.cname);
         dp.init(year,month,day,dateChangeHandler); // setup initial values and reg. handler
         updateTime(year, month, day);

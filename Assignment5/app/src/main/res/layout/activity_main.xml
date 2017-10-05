@@ -82,13 +82,13 @@
         android:padding="10dp"
         android:layout_height="98dp">
     </ImageView>
+
     <DatePicker
         android:id="@+id/datePicker"
         android:layout_width="fill_parent"
-        android:padding="5sp"
+        android:layout_height="215dp"
         android:gravity="center"
-        android:layout_height="195dp">
-    </DatePicker>
+        android:padding="5sp"></DatePicker>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -97,34 +97,18 @@
         android:weightSum="100">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Add City/State"
             android:id="@+id/addstate"
-            android:layout_weight="25"/>
-
-        <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Select State"
+            android:layout_weight="50.15"
+            android:text="Add City" />
+
+        <Button
             android:id="@+id/liststate"
-            android:layout_weight="25"/>
-
-        <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Select Google Map"
-            android:id="@+id/googlemap"
-            android:layout_weight="25"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Current Location"
-            android:id="@+id/currlocation"
-            android:layout_weight="25"/>
-
-
+            android:layout_weight="50.15"
+            android:text="Select City" />
 
 
     </LinearLayout>
