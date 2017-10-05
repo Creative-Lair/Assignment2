@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
     <TextView
@@ -18,6 +21,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="0,1"
+        android:id="@+id/table"
+        android:layout_below="@+id/cname"
         android:gravity="center"
         android:padding="5sp">
         <TableRow
@@ -79,19 +84,24 @@
     <ImageView
         android:layout_width="match_parent"
         android:src="@drawable/sunpic"
+        android:layout_below="@+id/table"
+        android:id="@+id/image"
         android:padding="10dp"
         android:layout_height="98dp">
     </ImageView>
     <DatePicker
         android:id="@+id/datePicker"
+        android:layout_below="@+id/image"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:padding="5sp"
-        android:gravity="center"
-        android:layout_height="195dp">
+        android:layout_centerInParent="true"
+        android:gravity="center">
     </DatePicker>
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_below="@+id/datePicker"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="100">
@@ -99,35 +109,20 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Add City/State"
+            android:text="@string/add_city_state"
             android:id="@+id/addstate"
-            android:layout_weight="25"/>
+            android:layout_weight="50"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Select State"
+            android:text="@string/select_state"
             android:id="@+id/liststate"
-            android:layout_weight="25"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Select Google Map"
-            android:id="@+id/googlemap"
-            android:layout_weight="25"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Current Location"
-            android:id="@+id/currlocation"
-            android:layout_weight="25"/>
-
-
-
+            android:layout_weight="50"/>
 
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>
+
+</ScrollView>

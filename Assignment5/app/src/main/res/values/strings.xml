@@ -2,4 +2,14 @@
 <resources>
     <string name="app_name">Suntime</string>
     <string name="title_activity_update_acitvity">UpdateAcitvity</string>
+    <string name="city">City:</string>
+    <string name="city_name">city name</string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="timezone">TimeZone:</string>
+    <string name="timezone_edit">TimeZone</string>
+    <string name="longitude_edit">Longitude</string>
+    <string name="latitude_edit">Latitude</string>
+    <string name="add_city_state">Add City/State</string>
+    <string name="select_state">Select State</string>
 </resources>

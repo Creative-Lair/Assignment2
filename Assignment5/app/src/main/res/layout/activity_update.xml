@@ -4,63 +4,116 @@
     android:layout_height="match_parent">
 
 
-    <EditText
-        android:id="@+id/cityname"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="42dp"
+        android:id="@+id/city"
+        android:textSize="24sp"
+        android:layout_margin="10dp"
+        android:text="@string/city"/>
+
+    <EditText
+        android:id="@+id/cityname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/city"
+        android:layout_toRightOf="@+id/city"
         android:ems="10"
+        android:layout_marginLeft="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_alignBaseline="@id/city"
         android:inputType="textPersonName"
-        android:hint="cityname" />
+        android:hint="@string/city_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignLeft="@+id/city"
+        android:layout_alignStart="@+id/city"
+        android:layout_below="@+id/city"
+        android:id="@+id/latitude"
+        android:textSize="24sp"
+        android:layout_margin="10dp"
+        android:text="@string/latitude"/>
 
     <EditText
         android:id="@+id/lat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/cityname"
+        android:layout_toRightOf="@+id/latitude"
+        android:layout_toEndOf="@+id/latitude"
         android:layout_alignStart="@+id/cityname"
+        android:layout_alignLeft="@id/cityname"
         android:layout_below="@+id/cityname"
-        android:layout_marginTop="45dp"
+        android:layout_alignBaseline="@+id/latitude"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Latitude" />
+        android:hint="@string/latitude_edit" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignLeft="@+id/city"
+        android:layout_alignStart="@+id/city"
+        android:layout_below="@+id/latitude"
+        android:id="@+id/longitude"
+        android:textSize="24sp"
+        android:layout_margin="10dp"
+        android:text="@string/longitude"/>
 
     <EditText
         android:id="@+id/lon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lat"
-        android:layout_alignStart="@+id/lat"
+        android:layout_alignLeft="@+id/cityname"
+        android:layout_alignStart="@+id/cityname"
+        android:layout_toRightOf="@+id/longitude"
+        android:layout_toEndOf="@id/longitude"
+        android:layout_alignBaseline="@id/longitude"
         android:layout_below="@+id/lat"
-        android:layout_marginTop="49dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Longitude" />
+        android:hint="@string/longitude_edit" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignLeft="@+id/city"
+        android:layout_alignStart="@+id/city"
+        android:layout_below="@+id/longitude"
+        android:id="@+id/timezome"
+        android:textSize="24sp"
+        android:layout_margin="10dp"
+        android:text="@string/timezone"/>
     <EditText
         android:id="@+id/TZ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/lon"
         android:layout_alignStart="@+id/lon"
-        android:layout_alignTop="@+id/lon"
-        android:layout_marginTop="110dp"
+        android:layout_toEndOf="@id/timezome"
+        android:layout_toRightOf="@id/timezome"
+        android:layout_alignBaseline="@+id/timezome"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="TimeZone" />
+        android:hint="@string/timezone_edit" />
 
     <Button
         android:id="@+id/addcity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TZ"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         android:text="ADD" />
 
 </RelativeLayout>
