@@ -1,9 +1,12 @@
 package com.example.ahsan.assignment5;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -58,6 +61,18 @@ public class ListActivity extends AppCompatActivity {
         //Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
         adapter = new ListAdapter(this,au_locations,city);
        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Preference pre= new Preference(ListActivity.this);
+                pre.updateNames(city.get(position).getName());
+                pre.updateLat(city.get(position).getLat());
+                pre.updateLon(city.get(position).getLon());
+                pre.updateTZ(city.get(position).getTZ());
+                Intent myIntent = new Intent(ListActivity.this, MainActivity.class);
+                ListActivity.this.startActivity(myIntent);
+            }
+        });
     }
 
     private String readFromFile() {
