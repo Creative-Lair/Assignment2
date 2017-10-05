@@ -80,9 +80,11 @@ public class ListActivity extends AppCompatActivity {
                 inputStream.close();
                 ret = stringBuilder.toString();
                 String[] newone = ret.split(",");
+                System.out.println(newone.length+""+newone[newone.length-1]);
                 for(int i=0;i<newone.length;i+=4)
                 {
-                    city.add(new Cities(newone[i],newone[i+1],newone[i+2]));
+
+                    city.add(new Cities(newone[i],newone[i+1],newone[i+2],newone[i+3]));
                 }
             }
         }
