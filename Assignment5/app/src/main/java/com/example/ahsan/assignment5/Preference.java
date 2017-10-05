@@ -20,7 +20,7 @@ public class Preference {
     private static final String KEY_LAT = "latitude";
     private static final String KEY_LON = "longitude";
     private static final String KEY_TZ = "timezone";
-
+    private static final String KEY_FIRST = "first";
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context _context;
@@ -34,18 +34,18 @@ public class Preference {
 
     public void updateNames(String names){
 
-        editor.putString("name",names);
+        editor.putString(KEY_NAME,names);
         editor.commit();
     }
 
     public String getNames(){
 
-        return pref.getString("name","Melbourne" );
+        return pref.getString(KEY_NAME,"Melbourne" );
 
     }
 
     public void updateLat(String lat){
-           editor.putString("latitude",lat);
+           editor.putString(KEY_LAT,lat);
 
         editor.commit();
     }
@@ -53,39 +53,48 @@ public class Preference {
 
     public String getLat(){
 
-        return  pref.getString("latitude","-37.50");
+        return  pref.getString(KEY_LAT,"-37.50");
 
 
 
     }
 
     public void updateLon(String lon){
-            editor.putString("longitude",lon);
+            editor.putString(KEY_LON,lon);
 
         editor.commit();
     }
 
 
     public String getLon(){
-        return   pref.getString("longitude","145.01");
+        return   pref.getString(KEY_LON,"145.01");
 
 
 
     }
 
     public void updateTZ(String tz){
-            editor.putString("timezone",tz);
+            editor.putString(KEY_TZ,tz);
 
         editor.commit();
     }
 
 
     public String getTZ(){
-        return  pref.getString("timezone", TimeZone.getDefault().toString());
+        return  pref.getString(KEY_TZ, TimeZone.getDefault().toString());
 
     }
 
+    public void updateFirst(String first)
+    {
+        editor.putString(KEY_FIRST,first);
+        editor.commit();
+    }
 
+    public String getFirst()
+    {
+        return pref.getString(KEY_FIRST,"first");
+    }
 
 
 

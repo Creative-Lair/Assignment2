@@ -27,38 +27,38 @@ public class ListActivity extends AppCompatActivity {
 
     private ListView listView;
     private ListAdapter adapter;
-    List<Cities> city= new ArrayList<Cities>();
+    List<Cities> city;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         listView = (ListView) findViewById(R.id.listview);
         String FILENAME = "au_locations.csv";
+        Preference pref = new Preference(ListActivity.this);
+        if(pref.getFirst() == "first") {
+            try {
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(getResources().openRawResource(au_locations)));
 
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
 
-        try {
-            BufferedReader reader = new BufferedReader(
-            new InputStreamReader(getResources().openRawResource(au_locations) ));
-
-            String receiveString = "";
-            StringBuilder stringBuilder = new StringBuilder();
-
-            while ( (receiveString = reader.readLine()) != null ) {
-                stringBuilder.append(receiveString);
+                while ((receiveString = reader.readLine()) != null) {
+                    stringBuilder.append(receiveString);
+                }
+                FileOutputStream fos = null;
+                fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+                String data = stringBuilder.toString();
+                fos.write(data.getBytes());
+                fos.close();
+                pref.updateFirst("not");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            FileOutputStream fos = null;
-            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            String data = stringBuilder.toString();
-            fos.write(data.getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-         catch (IOException e) {
-            e.printStackTrace();
         }
         String string = readFromFile();
-        //Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
         adapter = new ListAdapter(this,au_locations,city);
        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,7 +78,8 @@ public class ListActivity extends AppCompatActivity {
     private String readFromFile() {
 
         String ret = "";
-
+        if(city != null)city.clear();
+        city = new ArrayList<>();
         try {
             InputStream inputStream = this.openFileInput("au_locations.csv");
 
