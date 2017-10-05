@@ -12,13 +12,14 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
     /** Called when the activity is first created. */
     private Button add,list,googlemap,currlocation;
-
+    private TextView cityname;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -39,15 +40,20 @@ public class MainActivity extends AppCompatActivity {
         list =(Button) findViewById(R.id.liststate);
         googlemap = (Button) findViewById(R.id.googlemap);
         currlocation = (Button) findViewById(R.id.currlocation);
-
+        cityname = (TextView) findViewById(R.id.cname);
         dp.init(year,month,day,dateChangeHandler); // setup initial values and reg. handler
         updateTime(year, month, day);
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, UpdateAcitvity.class);
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
+        list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, ListActivity.class);
-                //myIntent.putExtra("key", value); //Optional parameters
                 MainActivity.this.startActivity(myIntent);
             }
         });
@@ -55,13 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateTime(int year, int monthOfYear, int dayOfMonth)
     {
-        TimeZone tz = TimeZone.getDefault();
-        GeoLocation geolocation = new GeoLocation("Melbourne", -37.50, 145.01, tz);
+        Preference pre = new Preference(MainActivity.this);
+        TimeZone tz = TimeZone.getTimeZone(pre.getTZ());
+        GeoLocation geolocation = new GeoLocation(pre.getNames(), new Double(pre.getLat()), new Double(pre.getLon()), tz);
         AstronomicalCalendar ac = new AstronomicalCalendar(geolocation);
         ac.getCalendar().set(year, monthOfYear, dayOfMonth);
         Date srise = ac.getSunrise();
         Date sset = ac.getSunset();
-
+        cityname.setText(pre.getNames()+",AU");
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
         TextView sunriseTV = (TextView) findViewById(R.id.sunriseTimeTV);
