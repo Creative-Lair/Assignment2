@@ -1,4 +1,4 @@
-package com.example.ahsan.assignment5;
+package com.example.ahsan.assignment5.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,10 +9,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.ahsan.assignment5.Adapter.ListAdapter;
+import com.example.ahsan.assignment5.Cities;
+import com.example.ahsan.assignment5.Preference;
+import com.example.ahsan.assignment5.R;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,7 +23,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import static com.example.ahsan.assignment5.R.raw.au_locations;
 

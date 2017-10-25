@@ -1,65 +1,74 @@
-package com.example.ahsan.assignment5;
+package com.example.ahsan.assignment5.Fragment;
+
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.example.ahsan.assignment5.AstronomicalCalendar;
+import com.example.ahsan.assignment5.GeoLocation;
+import com.example.ahsan.assignment5.Activity.ListActivity;
+import com.example.ahsan.assignment5.Preference;
+import com.example.ahsan.assignment5.R;
+import com.example.ahsan.assignment5.Activity.UpdateAcitvity;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
-public class MainActivity extends AppCompatActivity {
-
+public class Sunset extends Fragment implements View.OnClickListener {
     /** Called when the activity is first created. */
-    private Button add,list,googlemap,currlocation;
+    private Button add,list;
     private TextView cityname;
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initializeUI();
+
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.frag_main, container, false);
+        initializeUI(view);
+        return view;
     }
 
-    private void initializeUI()
+    private void initializeUI(View view)
     {
-        DatePicker dp = (DatePicker) findViewById(R.id.datePicker);
+        DatePicker dp = (DatePicker) view.findViewById(R.id.datePicker);
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        add = (Button) findViewById(R.id.addstate);
-        list =(Button) findViewById(R.id.liststate);
-        cityname = (TextView) findViewById(R.id.cname);
+        add = (Button) view.findViewById(R.id.addstate);
+        list =(Button) view.findViewById(R.id.liststate);
+        cityname = (TextView) view.findViewById(R.id.cname);
         dp.init(year,month,day,dateChangeHandler); // setup initial values and reg. handler
-        updateTime(year, month, day);
+        updateTime(year, month, day, view);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, UpdateAcitvity.class);
-                MainActivity.this.startActivity(myIntent);
+                Intent myIntent = new Intent(getActivity(), UpdateAcitvity.class);
+                getActivity().startActivity(myIntent);
             }
         });
         list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, ListActivity.class);
-                MainActivity.this.startActivity(myIntent);
+                Intent myIntent = new Intent(getActivity(), ListActivity.class);
+                getActivity().startActivity(myIntent);
             }
         });
     }
 
-    private void updateTime(int year, int monthOfYear, int dayOfMonth)
+    private void updateTime(int year, int monthOfYear, int dayOfMonth,View view)
     {
-        Preference pre = new Preference(MainActivity.this);
+        Preference pre = new Preference(getActivity());
         TimeZone tz = TimeZone.getTimeZone(pre.getTZ());
         GeoLocation geolocation = new GeoLocation(pre.getNames(), new Double(pre.getLat()), new Double(pre.getLon()), tz);
         AstronomicalCalendar ac = new AstronomicalCalendar(geolocation);
@@ -69,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         cityname.setText(pre.getNames()+",AU");
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
-        TextView sunriseTV = (TextView) findViewById(R.id.sunriseTimeTV);
-        TextView sunsetTV = (TextView) findViewById(R.id.sunsetTimeTV);
+        TextView sunriseTV = (TextView) view.findViewById(R.id.sunriseTimeTV);
+        TextView sunsetTV = (TextView) view.findViewById(R.id.sunsetTimeTV);
         Log.d("SUNRISE Unformatted", srise+"");
 
         sunriseTV.setText(sdf.format(srise));
@@ -81,8 +90,11 @@ public class MainActivity extends AppCompatActivity {
     {
         public void onDateChanged(DatePicker dp, int year, int monthOfYear, int dayOfMonth)
         {
-            updateTime(year, monthOfYear, dayOfMonth);
+            updateTime(year, monthOfYear, dayOfMonth,getView());
         }
     };
+    @Override
+    public void onClick(View v) {
 
+    }
 }
