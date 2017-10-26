@@ -1,6 +1,8 @@
 package com.example.ahsan.assignment5.Fragment;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -82,6 +84,25 @@ public class Table extends Fragment implements View.OnClickListener {
         while (calendar.getTime().before(ed))
         {
             Date result = calendar.getTime();
+            dates.add(result);
+            if(dates.size()==1){
+                TableRow row = (TableRow) view.inflate(getContext(),R.layout.table_row,null);
+                sunrise = (TextView) row.findViewById(R.id.sunriseTimeTV);
+                sunset = (TextView) row.findViewById(R.id.sunsetTimeTV);
+                date = (TextView) row.findViewById(R.id.date);
+
+                sunrise.setText("Sunrise");
+                sunset.setText("Sunset");
+                date.setText("Date");
+                sunrise.setTypeface(sunrise.getTypeface(), Typeface.BOLD);
+                sunset.setTypeface(sunset.getTypeface(), Typeface.BOLD);
+                date.setTypeface(date.getTypeface(), Typeface.BOLD);
+                sunrise.setTextSize(pxFromDp(16, getActivity()));
+                sunset.setTextSize(pxFromDp(16, getActivity()));
+                date.setTextSize(pxFromDp(16, getActivity()));
+                ll.addView(row);
+
+            }
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -94,7 +115,6 @@ public class Table extends Fragment implements View.OnClickListener {
             sunrise.setText(sdf.format(ac.getSunrise()));
             sunset.setText(sdf.format(ac.getSunset()));
             date.setText(sdf2.format(result));
-            dates.add(result);
             ll.addView(row);
             calendar.add(Calendar.DATE, 1);
         }
@@ -124,5 +144,9 @@ public class Table extends Fragment implements View.OnClickListener {
 
         }
     };
+
+    public static float pxFromDp(float dp, Context mContext) {
+        return dp * mContext.getResources().getDisplayMetrics().density;
+    }
 
 }
