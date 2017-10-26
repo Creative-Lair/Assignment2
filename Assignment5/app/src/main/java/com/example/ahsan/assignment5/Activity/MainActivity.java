@@ -1,5 +1,6 @@
 package com.example.ahsan.assignment5.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
@@ -12,6 +13,8 @@ import android.view.MenuItem;
 import com.example.ahsan.assignment5.Adapter.SectionPagerAdapter;
 import com.example.ahsan.assignment5.Preference;
 import com.example.ahsan.assignment5.R;
+
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,12 +43,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu,menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        String smsBody = pref.getSmsBody();
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+        sendIntent.putExtra("sms_body", smsBody);
+        sendIntent.setType("vnd.android-dir/mms-sms");
+        startActivity(sendIntent);
         return super.onOptionsItemSelected(item);
     }
 

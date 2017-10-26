@@ -96,6 +96,15 @@ public class Preference {
         return pref.getString(KEY_FIRST,"first");
     }
 
+    public String getSmsBody(){
+        return pref.getString("sms", "Text Message");
+    }
+
+    public void setSmsBody(String smsBody){
+        editor.putString("sms",smsBody);
+        editor.commit();
+    }
+
 
 
 

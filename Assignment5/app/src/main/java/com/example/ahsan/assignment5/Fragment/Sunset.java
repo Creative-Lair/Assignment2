@@ -28,6 +28,7 @@ public class Sunset extends Fragment implements View.OnClickListener {
     /** Called when the activity is first created. */
     private Button add,list;
     private TextView cityname;
+    private String msgbody;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,6 +76,8 @@ public class Sunset extends Fragment implements View.OnClickListener {
         ac.getCalendar().set(year, monthOfYear, dayOfMonth);
         Date srise = ac.getSunrise();
         Date sset = ac.getSunset();
+        msgbody = pre.getNames() + ",AU\n";
+        msgbody += ac.getCalendar().getTime() + "\n";
         cityname.setText(pre.getNames()+",AU");
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
@@ -82,8 +85,11 @@ public class Sunset extends Fragment implements View.OnClickListener {
         TextView sunsetTV = (TextView) view.findViewById(R.id.sunsetTimeTV);
         Log.d("SUNRISE Unformatted", srise+"");
 
+        msgbody += "Sunrise: " + sdf.format(srise) + "\n";
+        msgbody += "Sunset: " + sdf.format(sset) + "\n";
         sunriseTV.setText(sdf.format(srise));
         sunsetTV.setText(sdf.format(sset));
+        pre.setSmsBody(msgbody);
     }
 
     DatePicker.OnDateChangedListener dateChangeHandler = new DatePicker.OnDateChangedListener()

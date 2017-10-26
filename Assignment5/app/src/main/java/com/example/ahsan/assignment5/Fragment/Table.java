@@ -37,6 +37,7 @@ public class Table extends Fragment implements View.OnClickListener {
     /** Called when the activity is first created. */
 
     TextView cityname,sunrise,sunset,date;
+    String smsBody;
 
     Date sd,ed;
 
@@ -81,6 +82,7 @@ public class Table extends Fragment implements View.OnClickListener {
         SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
         TableLayout ll = (TableLayout) view.findViewById(R.id.displayLinear);
         ll.removeAllViews();
+        smsBody = pre.getNames() + ",AU\n\n";
         while (calendar.getTime().before(ed))
         {
             Date result = calendar.getTime();
@@ -94,6 +96,9 @@ public class Table extends Fragment implements View.OnClickListener {
                 sunrise.setText("Sunrise");
                 sunset.setText("Sunset");
                 date.setText("Date");
+                smsBody += "Date" + "\t";
+                smsBody += "Sunrise" + "\t";
+                smsBody += "Sunset" + "\n";
                 sunrise.setTypeface(sunrise.getTypeface(), Typeface.BOLD);
                 sunset.setTypeface(sunset.getTypeface(), Typeface.BOLD);
                 date.setTypeface(date.getTypeface(), Typeface.BOLD);
@@ -115,9 +120,15 @@ public class Table extends Fragment implements View.OnClickListener {
             sunrise.setText(sdf.format(ac.getSunrise()));
             sunset.setText(sdf.format(ac.getSunset()));
             date.setText(sdf2.format(result));
+            smsBody += sdf2.format(result) + "\t";
+            smsBody += sdf.format(ac.getSunrise()) + "\t";
+            smsBody += sdf.format(ac.getSunset()) + "\n";
+
             ll.addView(row);
             calendar.add(Calendar.DATE, 1);
         }
+
+        pre.setSmsBody(smsBody);
     }
 
     DatePicker.OnDateChangedListener dateChangeHandler = new DatePicker.OnDateChangedListener()
