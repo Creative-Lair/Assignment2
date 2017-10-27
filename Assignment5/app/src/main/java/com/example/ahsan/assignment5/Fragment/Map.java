@@ -19,6 +19,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -50,8 +51,14 @@ public class Map extends Fragment {
                     LatLng sydney = new LatLng(Float.parseFloat(preference.getLat()), Float.parseFloat(preference.getLon()));
                     mMap.addMarker(new MarkerOptions().position(sydney).title(preference.getNames()+",AU"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                    smsBody = URLEncoder.encode("http://maps.google.com?q="+ preference.getLat() + "," + preference.getLon());
-                    preference.setSmsBody(smsBody);
+                    smsBody = "http://maps.google.com?q="+ preference.getLat() + "," + preference.getLon();
+                    URL domain = null;
+                    try {
+                        domain = new URL(smsBody);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    preference.setSmsBody(domain.toString());
                 }
             });
 

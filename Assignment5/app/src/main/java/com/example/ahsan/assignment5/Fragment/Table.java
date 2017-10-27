@@ -97,14 +97,14 @@ public class Table extends Fragment implements View.OnClickListener {
                 sunset.setText("Sunset");
                 date.setText("Date");
                 smsBody += "Date" + "\t";
-                smsBody += "Sunrise" + "\t";
+                smsBody += "Sunrise" + "  ";
                 smsBody += "Sunset" + "\n";
                 sunrise.setTypeface(sunrise.getTypeface(), Typeface.BOLD);
                 sunset.setTypeface(sunset.getTypeface(), Typeface.BOLD);
                 date.setTypeface(date.getTypeface(), Typeface.BOLD);
-                sunrise.setTextSize(pxFromDp(16, getActivity()));
-                sunset.setTextSize(pxFromDp(16, getActivity()));
-                date.setTextSize(pxFromDp(16, getActivity()));
+                sunrise.setTextSize(pxFromDp(9, getActivity()));
+                sunset.setTextSize(pxFromDp(9, getActivity()));
+                date.setTextSize(pxFromDp(9, getActivity()));
                 ll.addView(row);
 
             }
@@ -120,7 +120,7 @@ public class Table extends Fragment implements View.OnClickListener {
             sunrise.setText(sdf.format(ac.getSunrise()));
             sunset.setText(sdf.format(ac.getSunset()));
             date.setText(sdf2.format(result));
-            smsBody += sdf2.format(result) + "\t";
+            smsBody += sdf2.format(result) + "     ";
             smsBody += sdf.format(ac.getSunrise()) + "\t";
             smsBody += sdf.format(ac.getSunset()) + "\n";
 
